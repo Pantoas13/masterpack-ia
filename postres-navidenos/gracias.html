@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <title>¡Listo! Descarga tu regalo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <style>
+        :root { --c1:#14532D; --c2:#166534; --accent:#DC2626; --accent2:#B91C1C; --soft:#FEF2F2;
+            --text:#1E293B; --muted:#64748B; --border:#E2E8F0; --bg:#F8FAFC; --white:#FFFFFF; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; color: var(--text); background: var(--white); line-height: 1.6; }
+        h1, h2, h3 { font-family: 'Montserrat', sans-serif; line-height: 1.2; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        .center { text-align: center; }
+        .btn { display: inline-block; background: var(--accent); color: #fff; font-size: 1.15rem; font-weight: 700; padding: 17px 36px; border-radius: 10px; text-decoration: none; transition: all .2s; box-shadow: 0 10px 18px -6px rgba(0,0,0,.35); border: none; cursor: pointer; }
+        .btn:hover { background: var(--accent2); transform: translateY(-2px); }
+        body { background: linear-gradient(135deg, var(--c1) 0%, var(--c2) 100%); color: #fff; min-height: 100vh; padding: 40px 16px; }
+        .wrap { max-width: 600px; margin: 0 auto; text-align: center; }
+        .check { width: 72px; height: 72px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 34px; margin: 0 auto 18px; }
+        h1 { font-size: 1.85rem; margin-bottom: 12px; }
+        .lead { color: rgba(255,255,255,.82); margin-bottom: 24px; }
+        .note { font-size: .85rem; color: rgba(255,255,255,.7); margin-top: 12px; }
+        .offer { background: #fff; color: var(--text); border-radius: 18px; padding: 30px 24px; margin-top: 40px; text-align: left; }
+        .offer h2 { color: var(--c1); font-size: 1.35rem; margin-bottom: 10px; }
+        .offer p { color: var(--muted); margin-bottom: 12px; }
+        .offer ul { list-style: none; margin-bottom: 18px; }
+        .offer li { padding: 6px 0 6px 26px; position: relative; }
+        .offer li::before { content: "✓"; position: absolute; left: 0; color: var(--accent); font-weight: 800; }
+        .price { font-family: 'Montserrat', sans-serif; font-size: 2rem; font-weight: 800; color: var(--c1); }
+        .offer .btn { width: 100%; text-align: center; margin-top: 10px; }
+        .secure { font-size: .8rem; color: var(--muted); text-align: center; margin-top: 10px; }
+        .link { display: inline-block; margin-top: 20px; color: rgba(255,255,255,.8); }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="check">✓</div>
+        <h1>¡Listo! Tu regalo está aquí</h1>
+        <p class="lead">Descárgalo ahora. También te enviamos un correo: confírmalo para recibir los consejos de los próximos días (si no lo ves, revisa spam o promociones).</p>
+        <a href="calendario-diciembre-gratis.pdf" class="btn" download>⬇ Descargar mi regalo</a>
+        <div class="offer">
+            <h2>¿Quieres el recetario completo?</h2>
+            <p>Postres Navideños para Vender: 20 recetas en vaso y frasco</p>
+            <ul><li>Recetas en vaso y frasco</li><li>Regalos en frasco</li><li>Ficha de cada receta</li><li>Calendario de diciembre</li></ul>
+            <div class="price">US$ 9,90</div>
+            <p style="font-size:.85rem;">Pago único · Acceso inmediato · Garantía de 7 días de Hotmart</p>
+            <a href="index.html#oferta" class="btn js-checkout">Lo quiero completo →</a>
+            <div class="secure">🔒 Pago seguro procesado por Hotmart</div>
+        </div>
+        <a href="index.html" class="link">Ver todos los detalles</a>
+    </div>
+    <script src="config.js"></script>
+</body>
+</html>
