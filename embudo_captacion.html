@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Descarga Gratuita: 15 Prompts de IA para Negocios</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0f172a;
+            --card: #1e293b;
+            --accent: #10b981;
+            --text: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .card {
+            background: var(--card);
+            max-width: 540px;
+            width: 100%;
+            padding: 40px 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.5);
+        }
+        .badge {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--accent);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        h1 { font-size: 1.8rem; line-height: 1.3; margin-bottom: 15px; }
+        p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin-bottom: 25px; }
+        .form-group { margin-bottom: 15px; text-align: left; }
+        label { display: block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 6px; font-weight: 600; }
+        input[type="text"], input[type="email"] {
+            width: 100%;
+            padding: 14px;
+            border-radius: 10px;
+            border: 1px solid #334155;
+            background: #0f172a;
+            color: #fff;
+            font-size: 1rem;
+            outline: none;
+        }
+        input:focus { border-color: var(--accent); }
+        .btn-submit {
+            width: 100%;
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            padding: 16px;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: opacity 0.2s;
+            margin-top: 10px;
+        }
+        .btn-submit:hover { opacity: 0.9; }
+        .form-msg { margin: 14px 0 0; font-size: 0.95rem; font-weight: 600; min-height: 1em; }
+        .form-msg.ok { color: var(--accent); }
+        .form-msg.err { color: #f87171; }
+        .btn-submit:disabled { opacity: 0.6; cursor: wait; }
+        .guarantee-text { font-size: 0.75rem; color: var(--text-muted); margin-top: 15px; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <span class="badge">🎁 RECURSO GRATUITO 2026</span>
+        <h1>15 Prompts de Inteligencia Artificial para Vender Más</h1>
+        <p>Escribe tu nombre y correo y descarga al instante el PDF con 15 prompts listos para copiar y pegar en ChatGPT, Claude o Gemini.</p>
+        
+        <form id="lead-form">
+            <div class="form-group">
+                <label for="nombre">Tu Nombre</label>
+                <input id="nombre" name="fields[name]" type="text" placeholder="Ej: Juan Pérez" autocomplete="given-name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Tu Correo Electrónico Principal</label>
+                <input id="email" name="fields[email]" type="email" placeholder="ejemplo@correo.com" autocomplete="email" required>
+            </div>
+            <input type="hidden" name="ml-submit" value="1">
+            <input type="hidden" name="anticsrf" value="true">
+            <button type="submit" class="btn-submit" id="btn-enviar">¡DESCARGAR PDF GRATIS AHORA!</button>
+            <p class="form-msg" id="form-msg" role="status"></p>
+        </form>
+        <p class="guarantee-text">🔒 Respetamos tu privacidad. Cero spam. Te puedes dar de baja con un clic.</p>
+    </div>
+
+    <script src="config.js"></script>
+    <script>
+        const MAILERLITE_ACTION = (window.MP_CONFIG || {}).MAILERLITE_ACTION;
+        const form = document.getElementById('lead-form');
+        const msg = document.getElementById('form-msg');
+        const btn = document.getElementById('btn-enviar');
+        form.addEventListener('submit', async function (e) {
+            e.preventDefault();
+            msg.className = 'form-msg'; msg.textContent = '';
+            if (!MAILERLITE_ACTION) { window.location.href = 'gracias.html'; return; }
+            btn.disabled = true; btn.textContent = 'Enviando...';
+            try {
+                const res = await fetch(MAILERLITE_ACTION, { method: 'POST', body: new FormData(form) });
+                const data = await res.json().catch(() => ({}));
+                if (data.success === false) throw new Error('correo');
+                window.location.href = 'gracias.html';
+                return;
+            } catch (err) {
+                // Si falla la conexión con MailerLite, igual entregamos el PDF
+                if (err.message !== 'correo') { window.location.href = 'gracias.html'; return; }
+                msg.className = 'form-msg err';
+                msg.textContent = 'No se pudo registrar tu correo. Revisa que esté bien escrito e inténtalo de nuevo.';
+            } finally {
+                btn.disabled = false; btn.textContent = '¡DESCARGAR PDF GRATIS AHORA!';
+            }
+        });
+    </script>
+</body>
+</html>

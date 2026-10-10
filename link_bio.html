@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Enlaces Oficiales | Master Pack IA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.8);
+            --primary: #10b981;
+            --primary-hover: #059669;
+            --text: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #38bdf8;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px 15px;
+        }
+        .bio-container {
+            width: 100%;
+            max-width: 480px;
+            text-align: center;
+        }
+        .profile-img {
+            width: 96px;
+            height: 96px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            margin: 0 auto 16px;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 25px -5px rgba(16, 185, 129, 0.4);
+        }
+        h1 { font-size: 1.3rem; font-weight: 800; margin-bottom: 6px; }
+        p.subtitle { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 24px; }
+        .links-list { display: flex; flex-direction: column; gap: 14px; }
+        .link-btn {
+            background: var(--card-bg);
+            color: var(--text);
+            text-decoration: none;
+            padding: 16px 20px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            backdrop-filter: blur(10px);
+        }
+        .link-btn:hover {
+            background: var(--primary);
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px -4px rgba(16, 185, 129, 0.5);
+            border-color: var(--primary);
+        }
+        .link-btn.featured {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            border: none;
+            box-shadow: 0 10px 20px -5px rgba(16, 185, 129, 0.4);
+        }
+        .footer-text { margin-top: 30px; font-size: 0.8rem; color: var(--text-muted); }
+    </style>
+</head>
+<body>
+    <div class="bio-container">
+        <div class="profile-img">🚀</div>
+        <h1>Master Pack IA 2026</h1>
+        <p class="subtitle">Herramientas & Prompts de IA para Emprendedores</p>
+        
+        <div class="links-list">
+            <a href="index.html" class="link-btn featured">🔥 Pack: 100 Prompts de IA (US$ 7,90)</a>
+            <a href="embudo_captacion.html" class="link-btn">🎁 Muestra Gratis: 15 Prompts de IA en PDF</a>
+            <a href="#" class="link-btn js-whatsapp" data-texto="Hola, tengo una consulta sobre el pack de 100 Prompts de IA">💬 Escríbeme por WhatsApp</a>
+            <a href="#" class="link-btn js-afiliados">👑 Hazte afiliado en Hotmart</a>
+        </div>
+
+        <div class="footer-text">
+            © 2026 Master Pack IA • Todos los derechos reservados
+        </div>
+    </div>
+    <script src="config.js"></script>
+</body>
+</html>
