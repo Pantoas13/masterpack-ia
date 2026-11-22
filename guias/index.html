@@ -30,6 +30,7 @@ pre{white-space:pre-wrap;background:#0B1020;border:1px solid #2b3566;border-radi
 .oferta{border-color:var(--mg)}
 .oferta a.btn{display:block;text-align:center;margin-top:10px;padding:14px;border-radius:14px;background:var(--mg);color:#0B1020;font-weight:800;text-decoration:none}
 .hidden{display:none}
+.amz{margin-top:14px;padding-top:12px;border-top:1px dashed #2b3566}.amz h3{margin:0 0 4px;font-size:17px;color:var(--mg)}.amz ul{margin:0;padding-left:20px}
 </style>
 </head>
 <body>
@@ -60,6 +61,7 @@ pre{white-space:pre-wrap;background:#0B1020;border:1px solid #2b3566;border-radi
  </div>
 </div>
 <script src="../config.js"></script>
+<script src="geo-amazon.js"></script>
 <script>
 {
 // Cada guía: palabra que se comenta en el reel, título y contenido (HTML).
@@ -72,20 +74,23 @@ const GUIAS = [
    <li><a href="https://gemini.google.com" rel="noopener">Gemini</a>: pégale el enlace de un vídeo de YouTube y pídele un resumen.</li>
    <li><a href="https://claude.ai" rel="noopener">Claude</a>: analiza textos y vídeos, escribe guiones y te ayuda a programar.</li>
   </ol>
-  <p class="small">Todas tienen versión gratuita (con límites de uso). Las funciones pueden cambiar con el tiempo.</p>`},
+  <p class="small">Todas tienen versión gratuita (con límites de uso). Las funciones pueden cambiar con el tiempo.</p>`,
+  amazon:[{texto:"Libros sobre inteligencia artificial en español",busqueda:"libro inteligencia artificial español"},{texto:"Micrófonos para grabar vídeos con el móvil",busqueda:"micrófono inalámbrico móvil"}]},
  {id:"viral", fecha:"2026-11-23", titulo:"El prompt para analizar cualquier reel viral", html:`
   <p>Copia el enlace de un reel viral de tu tema y pégalo en una IA que pueda ver vídeos, junto con este texto:</p>
   <pre id="p-viral">Analiza este reel escena por escena: [PEGA EL ENLACE]. Para cada escena dime: 1) qué se dice, 2) qué texto aparece en pantalla, 3) qué se ve en la imagen y 4) por qué engancha. Después explícame el gancho de los primeros 3 segundos, la estructura general y el tipo de llamada a la acción. Por último, escríbeme un guion de unos 50 segundos con esa misma estructura, pero sobre este tema: [TU TEMA].</pre>
-  <button class="copy" data-copy="p-viral">Copiar el prompt</button>`}
+  <button class="copy" data-copy="p-viral">Copiar el prompt</button>`,
+  amazon:[{texto:"Aros de luz para grabar reels",busqueda:"aro de luz con trípode para móvil"},{texto:"Estabilizadores (gimbal) para el móvil",busqueda:"estabilizador gimbal móvil"}]}
 ];
-const LS="tpf_guias_ok";
+const LS="tpf_guias_ok", TAG="trendpulsesho-21";
 let ok=false;try{ok=localStorage.getItem(LS)==="1"}catch(_){}
 const $=id=>document.getElementById(id);
 function mostrar(){
  $("registro").classList.add("hidden");$("guias").classList.remove("hidden");$("oferta").classList.remove("hidden");
  const pedida=(location.hash||"").slice(1).toLowerCase();
  const orden=[...GUIAS].sort((a,b)=>(b.id===pedida)-(a.id===pedida)||b.fecha.localeCompare(a.fecha));
- $("guias").innerHTML=orden.map(g=>`<div class="card guia" id="g-${g.id}"><span class="tag">Palabra: ${g.id.toUpperCase()}</span><h2>${g.titulo}</h2>${g.html}</div>`).join("");
+ const amz=g=>!(g.amazon&&g.amazon.length)?"":`<div class="amz"><h3>Para profundizar</h3><ul>${g.amazon.map(p=>`<li><a href="https://www.amazon.es/s?k=${encodeURIComponent(p.busqueda)}&tag=${TAG}" rel="sponsored nofollow noopener" target="_blank">${p.texto}</a></li>`).join("")}</ul></div>`;
+ $("guias").innerHTML=orden.map(g=>`<div class="card guia" id="g-${g.id}"><span class="tag">Palabra: ${g.id.toUpperCase()}</span><h2>${g.titulo}</h2>${g.html}${amz(g)}</div>`).join("")+`<p class="small">Como afiliado de Amazon, gano con las compras que cumplen los requisitos. A ti no te cuesta nada más.</p>`;
  document.querySelectorAll("[data-copy]").forEach(b=>b.onclick=async()=>{const t=$(b.dataset.copy).textContent;try{await navigator.clipboard.writeText(t);b.textContent="¡Copiado!"}catch(_){b.textContent="Mantén pulsado el texto para copiarlo"}});
 }
 if(ok)mostrar();
